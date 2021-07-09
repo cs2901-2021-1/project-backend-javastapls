@@ -9,13 +9,16 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>javastapls</groupId>
-    <artifactId>project-backend</artifactId>
+    <artifactId>project-backend-javastapls</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>project-backend</name>
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>11</java.version>
+        <sonar.projectKey>cs2901-2021-1_project-backend-javastapls</sonar.projectKey>
+        <sonar.organization>cs2901-2021-1</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
     <dependencies>
         <dependency>
