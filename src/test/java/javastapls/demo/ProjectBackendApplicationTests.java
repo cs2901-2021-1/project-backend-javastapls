@@ -1,4 +1,4 @@
-package javastapls.projectbackend;
+package javastapls.demo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
