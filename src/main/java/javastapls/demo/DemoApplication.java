@@ -1,13 +1,13 @@
-package javastapls.projectbackend;
+package javastapls.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ProjectBackendApplication {
+public class DemoBackendApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ProjectBackendApplication.class, args);
+        SpringApplication.run(DemoBackendApplication.class, args);
     }
 
 }
