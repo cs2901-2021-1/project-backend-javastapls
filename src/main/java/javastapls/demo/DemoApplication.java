@@ -11,5 +11,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EntityScan("javastapls.data")
 @EnableJpaRepositories("javastapls.data.repositories")
 public class DemoApplication {
-
+    public static void main(String[] args) {
+        SpringApplication.run(DemoApplication.class, args);
+    }
 }
