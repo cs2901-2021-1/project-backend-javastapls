@@ -3,6 +3,7 @@ package javastapls.demo;
 import javastapls.business.custom_exceptions.CustomNotFoundException;
 import javastapls.data.entities.AcademicDirectorate;
 import javastapls.data.entities.Course;
+import javastapls.data.dtos.CourseDTO;
 import javastapls.data.keys.CourseKey;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -62,6 +63,23 @@ class DemoApplicationTests {
     }
 
     @Test
+    void checkEntityCourseDTO() throws Exception{
+        AcademicDirectorate academicDirectorate = new AcademicDirectorate("DC","Departamento de Ciencias");
+        CourseDTO courseDto1 = new CourseDTO();
+        CourseDTO courseDto2 = new CourseDTO("EG0005","Matematicas 2","2021-2",278,academicDirectorate.getName());
+        courseDto1.setDtoAcademicDirectorateName(academicDirectorate.getName());
+        courseDto1.setDtoCode("EG0005");
+        courseDto1.setDtoName("Matematicas 2");
+        courseDto1.setDtoProjection(278);
+        courseDto1.setDtoProjectionPeriod("2021-2");
+        assertEquals(courseDto1.getDtoAcademicDirectorateName(), courseDto2.getDtoAcademicDirectorateName());
+        assertEquals(courseDto1.getDtoCode(), courseDto2.getDtoCode());
+        assertEquals(courseDto1.getDtoName(), courseDto2.getDtoName());
+        assertEquals(courseDto1.getDtoProjection(), courseDto2.getDtoProjection());
+        assertEquals(courseDto1.getDtoProjectionPeriod(), courseDto2.getDtoProjectionPeriod());
+    }
+
+    @Test
     void checkEntityAcademicDirectorate() throws Exception{
         AcademicDirectorate academicDirectorate = new AcademicDirectorate("DH","Departamento de Humanidades");
         AcademicDirectorate academicDirectorate2 = new AcademicDirectorate();
@@ -77,7 +95,7 @@ class DemoApplicationTests {
         CourseKey courseKey2 = new CourseKey("DC","2021-2");
         CourseKey courseKey3 = new CourseKey("DH","2021-2");
         CourseKey courseKey4 = new CourseKey("DC","2021-1");
-        Course course = new Course();
+        CourseDTO course = new CourseDTO();
         courseKey.setCode("DC");
         courseKey.setProjectionPeriod("2021-2");
         assertEquals(courseKey.getCode(), courseKey2.getCode());
@@ -90,4 +108,5 @@ class DemoApplicationTests {
         assertEquals(false, courseKey2.equals(courseKey4));
         assertEquals(courseKey.hashCode(), courseKey2.hashCode());
     }
+
 }
