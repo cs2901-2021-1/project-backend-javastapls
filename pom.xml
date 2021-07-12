@@ -15,6 +15,8 @@
     <name>project-backend</name>
     <description>Demo project for Spring Boot</description>
     <properties>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
         <java.version>11</java.version>
         <sonar.projectKey>cs2901-2021-1_project-backend-javastapls</sonar.projectKey>
         <sonar.organization>cs2901-2021-1</sonar.organization>
@@ -62,6 +64,7 @@
 			<artifactId>springdoc-openapi-ui</artifactId>
 			<version>1.5.2</version>
 		</dependency>
+        
     </dependencies>
 
     <build>
@@ -70,6 +73,11 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.8-SNAPSHOT</version>
+              </plugin>
         </plugins>
     </build>
 

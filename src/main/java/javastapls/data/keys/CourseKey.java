@@ -3,6 +3,8 @@ package javastapls.data.keys;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javastapls.business.CourseService;
+
 public class CourseKey implements Serializable{
 
     String code;
@@ -37,7 +39,7 @@ public class CourseKey implements Serializable{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        var courseKey = (CourseKey) o;
+        CourseKey courseKey = (CourseKey) o;
         return (this.code.equals(courseKey.getCode()) && 
                 this.projectionPeriod.equals(courseKey.getProjectionPeriod()));
     }
