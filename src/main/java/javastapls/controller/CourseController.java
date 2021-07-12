@@ -16,7 +16,7 @@ public class CourseController {
     static final Logger logger = Logger.getLogger(CourseController.class.getName());
 
     @GetMapping("/all/{period}")
-    public List<Course> getCoursesByPeriod(@PathVariable(value = "Period") String projectionPeriod){
+    public List<Course> getCoursesByPeriod(@PathVariable(value = "period") String projectionPeriod){
         return courseService.getCoursesByPeriod(projectionPeriod);
     }
 }
