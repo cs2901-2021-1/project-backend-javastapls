@@ -2,7 +2,7 @@ package javastapls.data.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -24,7 +24,7 @@ public class AcademicDirectorate implements Serializable {
 			fetch = FetchType.LAZY,
 			orphanRemoval = true
 	)
-	@JsonManagedReference
+	@JsonIgnore
 	private final List<Course> courses = new ArrayList<>();
 
     AcademicDirectorate(){
