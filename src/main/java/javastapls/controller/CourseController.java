@@ -1,10 +1,9 @@
 package javastapls.controller;
 
 import javastapls.business.CourseService;
-import javastapls.data.entities.Course;
+import javastapls.data.dtos.CourseDTO;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import java.util.logging.Logger;
 import java.util.List;
 
 @RestController
@@ -13,10 +12,8 @@ public class CourseController {
     @Autowired
     private CourseService courseService;
 
-    static final Logger logger = Logger.getLogger(CourseController.class.getName());
-
     @GetMapping("/all/{period}")
-    public List<Course> getCoursesByPeriod(@PathVariable(value = "period") String projectionPeriod){
+    public List<CourseDTO> getCoursesByPeriod(@PathVariable(value = "period") String projectionPeriod){
         return courseService.getCoursesByPeriod(projectionPeriod);
     }
 }
