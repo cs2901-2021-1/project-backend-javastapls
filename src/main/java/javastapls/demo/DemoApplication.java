@@ -25,6 +25,8 @@ public class DemoApplication {
 			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/course/**").allowedOrigins("http://localhost:3000/").
                 allowedMethods("GET");
+				registry.addMapping("/academic-directorate/**").allowedOrigins("http://localhost:3000").
+				allowedMethods("GET");
 			}
 		};
 	}
