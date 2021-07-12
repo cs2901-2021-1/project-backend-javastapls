@@ -3,8 +3,6 @@ package javastapls.data.keys;
 import java.io.Serializable;
 import java.util.Objects;
 
-import javastapls.business.CourseService;
-
 public class CourseKey implements Serializable{
 
     String code;
