@@ -1,15 +1,11 @@
 package javastapls.data.keys;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-@Embeddable
 public class CourseKey implements Serializable{
-    @Column(name = "code")
-    String code;
 
-    @Column(name = "projection_period")
+    String code;
     String projectionPeriod;
 
     public CourseKey(){

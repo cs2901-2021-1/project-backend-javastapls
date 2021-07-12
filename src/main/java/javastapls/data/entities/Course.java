@@ -8,10 +8,16 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "courses")
+@IdClass(CourseKey.class)
 public class Course implements Serializable {
 
-    @EmbeddedId
-    private CourseKey courseKey;
+    @Id
+    @Column(name="code")
+    String code;
+
+    @Id
+    @Column(name = "projection_period")
+    String projectionPeriod;
 
     @Column(name="name")
     private String name;
@@ -28,19 +34,27 @@ public class Course implements Serializable {
         //DEFAULT CONSTRUCTOR
     }
 
-    Course(CourseKey courseKey, String name, AcademicDirectorate academicDirectorate, int projection) {
-        this.courseKey = courseKey;
+    Course(String code, String projectionPeriod, String name, int projection){
+        this.code = code;
+        this.projectionPeriod = projectionPeriod;
         this.name = name;
-        this.academicDirectorate = academicDirectorate;
         this.projection = projection;
     }
 
-    public CourseKey getCourseKey() {
-        return this.courseKey;
+    public String getCode() {
+        return this.code;
     }
 
-    public void setCourseKey(CourseKey courseKey) {
-        this.courseKey = courseKey;
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getProjectionPeriod() {
+        return this.projectionPeriod;
+    }
+
+    public void setProjectionPeriod(String projectionPeriod) {
+        this.projectionPeriod = projectionPeriod;
     }
 
     public String getName() {
@@ -51,19 +65,19 @@ public class Course implements Serializable {
         this.name = name;
     }
 
-    public AcademicDirectorate getAcademicDirectorate() {
-        return this.academicDirectorate;
-    }
-
-    public void setAcademicDirectorate(AcademicDirectorate academicDirectorate) {
-        this.academicDirectorate = academicDirectorate;
-    }
-
     public int getProjection() {
         return projection;
     }
 
     public void setProjection(int projection) {
         this.projection = projection;
+    }
+    
+    public AcademicDirectorate getAcademicDirectorate() {
+        return this.academicDirectorate;
+    }
+
+    public void setAcademicDirectorate(AcademicDirectorate academicDirectorate) {
+        this.academicDirectorate = academicDirectorate;
     }
 }
