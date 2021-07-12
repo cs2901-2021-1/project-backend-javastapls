@@ -12,9 +12,9 @@ public class CourseKey implements Serializable{
 
     }
 
-    public CourseKey(String code, String projectionYear){
+    public CourseKey(String code, String projectionPeriod){
         this.code = code;
-        this.projectionPeriod = projectionYear;
+        this.projectionPeriod = projectionPeriod;
     }
 
     public String getCode() {

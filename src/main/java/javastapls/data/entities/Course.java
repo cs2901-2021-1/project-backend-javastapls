@@ -30,15 +30,16 @@ public class Course implements Serializable {
     @JsonBackReference
     private AcademicDirectorate academicDirectorate;
 
-    Course(){
+    public Course(){
         //DEFAULT CONSTRUCTOR
     }
 
-    Course(String code, String projectionPeriod, String name, int projection){
+    public Course(String code, String projectionPeriod, String name, int projection, AcademicDirectorate academicDirectorate){
         this.code = code;
         this.projectionPeriod = projectionPeriod;
         this.name = name;
         this.projection = projection;
+        this.academicDirectorate = academicDirectorate;
     }
 
     public String getCode() {

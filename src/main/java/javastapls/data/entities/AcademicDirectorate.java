@@ -27,11 +27,11 @@ public class AcademicDirectorate implements Serializable {
 	@JsonIgnore
 	private final List<Course> courses = new ArrayList<>();
 
-    AcademicDirectorate(){
+    public AcademicDirectorate(){
         //DEFAULT CONSTRUCTOR
     }
 
-    AcademicDirectorate(String id, String name){
+    public AcademicDirectorate(String id, String name){
         this.id = id;
         this.name = name;
     }
