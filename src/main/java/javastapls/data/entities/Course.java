@@ -1,9 +1,20 @@
 package javastapls.data.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
+
 public class Course {
+    @Id
+    @Column(name = "code")
     String code;
+
+    @Column(name="name")
     String name;
+
+    @Column(name="idAcademicDirectorate")
     String idAcademicDirectorate;
+
+    @Column(name="projection")
     int projection;
 
     Course(){
