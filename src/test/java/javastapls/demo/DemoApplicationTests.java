@@ -1,11 +1,12 @@
 package javastapls.demo;
 
+import javastapls.business.custom_exceptions.CustomNotFoundException;
 import javastapls.data.entities.AcademicDirectorate;
 import javastapls.data.entities.Course;
 import javastapls.data.keys.CourseKey;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -19,9 +20,15 @@ import org.springframework.test.web.servlet.MockMvc;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class ProjectBackendApplicationTests {
+class DemoApplicationTests {
     @Autowired
-    private MockMvc mockMvc;
+    private MockMvc mockMvc;  
+
+    @Test 
+    void checkCustomException(){
+        CustomNotFoundException customNotFoundException = new CustomNotFoundException("NotFoundException");
+        assertNotNull(customNotFoundException);
+    }
 
     @Test
     void checkControllerCourse() throws Exception{
