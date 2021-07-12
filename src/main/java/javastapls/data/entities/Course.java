@@ -1,32 +1,46 @@
 package javastapls.data.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
+import javastapls.data.keys.CourseKey;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import javax.persistence.*;
+import java.io.Serializable;
 
-public class Course {
-    @Id
-    @Column(name = "code")
-    String code;
+
+@Entity
+@Table(name = "courses")
+public class Course implements Serializable {
+
+    @EmbeddedId
+    private CourseKey courseKey;
 
     @Column(name="name")
-    String name;
-
-    @Column(name="idAcademicDirectorate")
-    String idAcademicDirectorate;
+    private String name;
 
     @Column(name="projection")
-    int projection;
+    private int projection;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_academic_directorate", referencedColumnName = "id")
+    @JsonBackReference
+    private AcademicDirectorate academicDirectorate;
 
     Course(){
         //DEFAULT CONSTRUCTOR
     }
 
-    public String getCode() {
-        return code;
+    Course(CourseKey courseKey, String name, AcademicDirectorate academicDirectorate, int projection) {
+        this.courseKey = courseKey;
+        this.name = name;
+        this.academicDirectorate = academicDirectorate;
+        this.projection = projection;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public CourseKey getCourseKey() {
+        return this.courseKey;
+    }
+
+    public void setCourseKey(CourseKey courseKey) {
+        this.courseKey = courseKey;
     }
 
     public String getName() {
@@ -37,12 +51,12 @@ public class Course {
         this.name = name;
     }
 
-    public String getIdAcademicDirectorate() {
-        return idAcademicDirectorate;
+    public AcademicDirectorate getAcademicDirectorate() {
+        return this.academicDirectorate;
     }
 
-    public void setIdAcademicDirectorate(String idAcademicDirectorate) {
-        this.idAcademicDirectorate = idAcademicDirectorate;
+    public void setAcademicDirectorate(AcademicDirectorate academicDirectorate) {
+        this.academicDirectorate = academicDirectorate;
     }
 
     public int getProjection() {

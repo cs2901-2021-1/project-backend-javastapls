@@ -1,7 +1,14 @@
 package javastapls.data.repositories;
 
 import javastapls.data.entities.Course;
-import org.springframework.data.jpa.repository.JpaRepository;
+import javastapls.data.keys.CourseKey;
 
-public interface CourseRepository extends JpaRepository<Course,String> {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import java.util.List;
+
+public interface CourseRepository extends JpaRepository<Course, CourseKey> {
+
+    @Query(value = "select * from courses where projection_period = ?1", nativeQuery = true)
+    List<Course> getCoursesByPeriod(String projectionPeriod);
 }

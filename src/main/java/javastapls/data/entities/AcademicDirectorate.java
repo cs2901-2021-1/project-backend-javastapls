@@ -1,18 +1,39 @@
 package javastapls.data.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import java.util.List;
+import java.util.ArrayList;
 
-public class AcademicDirectorate {
+
+
+@Entity
+@Table(name = "AcademicDirectorates")
+public class AcademicDirectorate implements Serializable {
     @Id
     @Column(name="id")
-    String id;
+    private String id;
 
     @Column(name="name")
-    String name;
+    private String name;
+
+    @OneToMany(
+			mappedBy = "academicDirectorate",
+			cascade = CascadeType.ALL,
+			fetch = FetchType.LAZY,
+			orphanRemoval = true
+	)
+	@JsonManagedReference
+	private final List<Course> courses = new ArrayList<>();
 
     AcademicDirectorate(){
         //DEFAULT CONSTRUCTOR
+    }
+
+    AcademicDirectorate(String id, String name){
+        this.id = id;
+        this.name = name;
     }
 
     public String getId() {
