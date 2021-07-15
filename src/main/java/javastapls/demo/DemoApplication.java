@@ -27,7 +27,7 @@ public class DemoApplication {
 				.allowedOrigins("https://cs.mrg.com.pe/app-sec01-group02/").
                 allowedMethods("GET");
 
-				registry.addMapping("/academic-directorate/**")
+				registry.addMapping("/academic-directorate/all")
 				.allowedOrigins("https://cs.mrg.com.pe/app-sec01-group02/").
 				allowedMethods("GET");
 			}
