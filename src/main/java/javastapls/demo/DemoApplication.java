@@ -23,13 +23,9 @@ public class DemoApplication {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/course/**")
-				.allowedOrigins("https://cs.mrg.com.pe/app-sec01-group02/").
+				registry.addMapping("/**")
+				.allowedOrigins("https://cs.mrg.com.pe/").
                 allowedMethods("GET");
-
-				registry.addMapping("/academic-directorate/all")
-				.allowedOrigins("https://cs.mrg.com.pe/app-sec01-group02/").
-				allowedMethods("GET");
 			}
 		};
 	}
