@@ -24,7 +24,7 @@ public class DemoApplication {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/**")
-				.allowedOrigins("https://cs.mrg.com.pe/").
+				.allowedOrigins("https://cs.mrg.com.pe/","http://localhost:3000/").
                 allowedMethods("GET");
 			}
 		};
