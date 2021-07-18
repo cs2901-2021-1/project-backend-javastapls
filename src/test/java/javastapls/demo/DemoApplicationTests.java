@@ -22,6 +22,9 @@ import java.util.logging.Logger;
 @SpringBootTest
 @AutoConfigureMockMvc
 class DemoApplicationTests {
+
+    static final Logger logger = Logger.getLogger(DemoApplication.class.getName());
+
     @Autowired
     private MockMvc mockMvc;  
 
