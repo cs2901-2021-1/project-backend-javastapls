@@ -24,12 +24,8 @@ public class DemoApplication {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/course/**")
-				.allowedOrigins("http://localhost:3000/", "https://cs.mrg.com.pe/app-sec01-group02/").
+				.allowedOrigins("https://cs.mrg.com.pe/","http://localhost:3000/").
                 allowedMethods("GET");
-
-				registry.addMapping("/academic-directorate/**")
-				.allowedOrigins("http://localhost:3000/", "https://cs.mrg.com.pe/app-sec01-group02/").
-				allowedMethods("GET");
 			}
 		};
 	}
