@@ -38,20 +38,6 @@ public class DemoApplicationTests extends AbstractTestNGSpringContextTests{
         Assert.assertNotEquals(customNotFoundException, null);
     }
 
-    @Test
-    void checkControllerCourse() throws Exception{
-        this.mockMvc.perform(get("/course/all/2021-2")
-                    .contentType("application/json"))
-                    .andExpect(status().isOk());
-    }
-
-    @Test
-    void checkControllerAcademicDirectorate() throws Exception{
-        this.mockMvc.perform(get("/academic-directorate/all")
-                    .contentType("application/json"))
-                    .andExpect(status().isOk());
-    }
-
     @Test(invocationCount = 20, threadPoolSize = 20)
     void checkControllersConcurrency() throws Exception{
         double start = System.currentTimeMillis();
@@ -64,6 +50,20 @@ public class DemoApplicationTests extends AbstractTestNGSpringContextTests{
         double end = System.currentTimeMillis();
         double result = end - start;
         Assert.assertTrue(result <= 60000);
+    }
+
+    @Test
+    void checkControllerCourse() throws Exception{
+        this.mockMvc.perform(get("/course/all/2021-2")
+                    .contentType("application/json"))
+                    .andExpect(status().isOk());
+    }
+
+    @Test
+    void checkControllerAcademicDirectorate() throws Exception{
+        this.mockMvc.perform(get("/academic-directorate/all")
+                    .contentType("application/json"))
+                    .andExpect(status().isOk());
     }
 
     @Test
