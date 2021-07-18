@@ -8,6 +8,7 @@ import javastapls.data.keys.CourseKey;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -46,6 +47,30 @@ class DemoApplicationTests {
         this.mockMvc.perform(get("/academic-directorate/all")
                     .contentType("application/json"))
                     .andExpect(status().isOk());
+    }
+
+    @Test
+    void checkControllerCourseResponseTime() throws Exception{
+        double start = System.currentTimeMillis();
+        this.mockMvc.perform(get("/course/all/2021-2")
+                    .contentType("application/json"))
+                    .andExpect(status().isOk());
+        double end = System.currentTimeMillis();
+        double result = end - start;
+        logger.info("Result: " + result);
+        assertTrue(result <= 60000);
+    }
+
+    @Test
+    void checkControllerAcademicDirectorateResponseTime() throws Exception{
+        double start = System.currentTimeMillis();
+        this.mockMvc.perform(get("/academic-directorate/all")
+                    .contentType("application/json"))
+                    .andExpect(status().isOk());
+        double end = System.currentTimeMillis();
+        double result = end - start;
+        logger.info("Result: " + result);
+        assertTrue(result <= 60000);
     }
 
     @Test
