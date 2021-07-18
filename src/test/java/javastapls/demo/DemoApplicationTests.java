@@ -6,29 +6,50 @@ import javastapls.data.entities.Course;
 import javastapls.data.dtos.CourseDTO;
 import javastapls.data.keys.CourseKey;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import org.junit.jupiter.api.Test;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+import org.testng.Assert;
 
+@SpringBootTest(classes = DemoApplication.class)
+public class DemoApplicationTests extends AbstractTestNGSpringContextTests{
 
-@SpringBootTest
-@AutoConfigureMockMvc
-class DemoApplicationTests {
     @Autowired
-    private MockMvc mockMvc;  
+    private WebApplicationContext webApplicationContext;
 
+    private MockMvc mockMvc;
+
+    @BeforeClass
+	public void setup() {
+		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+	}
+    
     @Test 
     void checkCustomException(){
         CustomNotFoundException customNotFoundException = new CustomNotFoundException("NotFoundException");
-        assertNotNull(customNotFoundException);
+        Assert.assertNotEquals(customNotFoundException, null);
+    }
+
+    @Test(invocationCount = 20, threadPoolSize = 20)
+    void checkControllersConcurrency() throws Exception{
+        double start = System.currentTimeMillis();
+        this.mockMvc.perform(get("/academic-directorate/all")
+                    .contentType("application/json"))
+                    .andExpect(status().isOk());
+        this.mockMvc.perform(get("/course/all/2021-2")
+                    .contentType("application/json"))
+                    .andExpect(status().isOk());
+        double end = System.currentTimeMillis();
+        double result = end - start;
+        Assert.assertTrue(result <= 60000);
     }
 
     @Test
@@ -55,11 +76,11 @@ class DemoApplicationTests {
         course1.setName("Matematicas 2");
         course1.setProjection(278);
         course1.setProjectionPeriod("2021-2");
-        assertEquals(course1.getAcademicDirectorate(), course2.getAcademicDirectorate());
-        assertEquals(course1.getCode(), course2.getCode());
-        assertEquals(course1.getName(), course2.getName());
-        assertEquals(course1.getProjection(), course2.getProjection());
-        assertEquals(course1.getProjectionPeriod(), course2.getProjectionPeriod());
+        Assert.assertEquals(course1.getAcademicDirectorate(), course2.getAcademicDirectorate());
+        Assert.assertEquals(course1.getCode(), course2.getCode());
+        Assert.assertEquals(course1.getName(), course2.getName());
+        Assert.assertEquals(course1.getProjection(), course2.getProjection());
+        Assert.assertEquals(course1.getProjectionPeriod(), course2.getProjectionPeriod());
     }
 
     @Test
@@ -72,11 +93,11 @@ class DemoApplicationTests {
         courseDto1.setDtoName("Matematicas 2");
         courseDto1.setDtoProjection(278);
         courseDto1.setDtoProjectionPeriod("2021-2");
-        assertEquals(courseDto1.getDtoAcademicDirectorateName(), courseDto2.getDtoAcademicDirectorateName());
-        assertEquals(courseDto1.getDtoCode(), courseDto2.getDtoCode());
-        assertEquals(courseDto1.getDtoName(), courseDto2.getDtoName());
-        assertEquals(courseDto1.getDtoProjection(), courseDto2.getDtoProjection());
-        assertEquals(courseDto1.getDtoProjectionPeriod(), courseDto2.getDtoProjectionPeriod());
+        Assert.assertEquals(courseDto1.getDtoAcademicDirectorateName(), courseDto2.getDtoAcademicDirectorateName());
+        Assert.assertEquals(courseDto1.getDtoCode(), courseDto2.getDtoCode());
+        Assert.assertEquals(courseDto1.getDtoName(), courseDto2.getDtoName());
+        Assert.assertEquals(courseDto1.getDtoProjection(), courseDto2.getDtoProjection());
+        Assert.assertEquals(courseDto1.getDtoProjectionPeriod(), courseDto2.getDtoProjectionPeriod());
     }
 
     @Test
@@ -85,8 +106,8 @@ class DemoApplicationTests {
         AcademicDirectorate academicDirectorate2 = new AcademicDirectorate();
         academicDirectorate2.setId("DH");
         academicDirectorate2.setName("Departamento de Humanidades");
-        assertEquals(academicDirectorate.getId(),academicDirectorate2.getId());
-        assertEquals(academicDirectorate.getName(), academicDirectorate2.getName());
+        Assert.assertEquals(academicDirectorate.getId(),academicDirectorate2.getId());
+        Assert.assertEquals(academicDirectorate.getName(), academicDirectorate2.getName());
     }
 
     @Test
@@ -98,15 +119,14 @@ class DemoApplicationTests {
         CourseDTO course = new CourseDTO();
         courseKey.setCode("DC");
         courseKey.setProjectionPeriod("2021-2");
-        assertEquals(courseKey.getCode(), courseKey2.getCode());
-        assertEquals(courseKey.getProjectionPeriod(), courseKey2.getProjectionPeriod());
-        assertEquals(true, courseKey.equals(courseKey2));
-        assertEquals(false,courseKey.equals(null) );
-        assertEquals(true, courseKey.equals(courseKey));
-        assertEquals(false, courseKey.equals(course));
-        assertEquals(false, courseKey.equals(courseKey3));
-        assertEquals(false, courseKey2.equals(courseKey4));
-        assertEquals(courseKey.hashCode(), courseKey2.hashCode());
+        Assert.assertEquals(courseKey.getCode(), courseKey2.getCode());
+        Assert.assertEquals(courseKey.getProjectionPeriod(), courseKey2.getProjectionPeriod());
+        Assert.assertEquals(true, courseKey.equals(courseKey2));
+        Assert.assertEquals(false,courseKey.equals(null) );
+        Assert.assertEquals(true, courseKey.equals(courseKey));
+        Assert.assertEquals(false, courseKey.equals(course));
+        Assert.assertEquals(false, courseKey.equals(courseKey3));
+        Assert.assertEquals(false, courseKey2.equals(courseKey4));
+        Assert.assertEquals(courseKey.hashCode(), courseKey2.hashCode());
     }
-
 }
