@@ -6,6 +6,7 @@ spring:
           google:
             client-id: 175782916154-c4f8ot2iunick0j2g26gme0nu82opatv.apps.googleusercontent.com
             clientSecret: Z2yAy5ZMrq-WxbKqYT1YBz5r
+            #redirectUri: "http://localhost:8080/oauth2/callback/{registrationId}"
             redirectUri: "https://api.cs.mrg.com.pe/api-sec01-group02/oauth2/callback/{registrationId}"
             scope:
               - email
@@ -21,5 +22,5 @@ app:
     # redirectUri mentioned by the frontend client in the /oauth2/authorize request.
     # We're not using cookies because they won't work well in mobile clients.
     authorizedRedirectUris:
-      - http://localhost:3000/oauth2/redirect
+      #- http://localhost:3000/oauth2/redirect
       - https://cs.mrg.com.pe/app-sec01-group02/oauth2/redirect
