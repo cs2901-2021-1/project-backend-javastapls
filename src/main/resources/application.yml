@@ -6,7 +6,8 @@ spring:
           google:
             client-id: ${GOOGLE_ID}
             clientSecret: ${GOOGLE_SECRET}
-            redirectUri: "http://localhost:8080/oauth2/callback/{registrationId}"
+            #redirectUri: "http://localhost:8080/oauth2/callback/{registrationId}"
+            redirectUri: "https://api.cs.mrg.com.pe/api-sec01-group02/oauth2/callback/{registrationId}"
             scope:
               - email
               - profile
@@ -14,12 +15,12 @@ spring:
 app:
   auth:
     tokenSecret: ${TOKEN_SECRET}
-    tokenExpirationMsec: ${TOKEN_EXPIRATION}
+    tokenExpirationMsec: ${}
   oauth2:
     # After successfully authenticating with the OAuth2 Provider,
     # we'll be generating an auth token for the user and sending the token to the
     # redirectUri mentioned by the frontend client in the /oauth2/authorize request.
     # We're not using cookies because they won't work well in mobile clients.
     authorizedRedirectUris:
-      - http://localhost:3000/oauth2/redirect
-      #- https://cs.mrg.com.pe/app-sec01-group02/oauth2/redirect
+      #- http://localhost:3000/oauth2/redirect
+      - https://cs.mrg.com.pe/app-sec01-group02/oauth2/redirect
