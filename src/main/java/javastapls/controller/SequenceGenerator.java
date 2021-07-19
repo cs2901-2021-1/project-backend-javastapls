@@ -12,8 +12,8 @@ public class SequenceGenerator {
     private static final int MACHINE_ID_BITS = 10;
     private static final int SEQUENCE_BITS = 12;
 
-    private static final int maxMachineId = (int)(Math.pow(2, MACHINE_ID_BITS) - 1);
-    private static final int maxSequence = (int)(Math.pow(2, SEQUENCE_BITS) - 1);
+    private static final int MAX_MACHINE_ID = (int)(Math.pow(2, MACHINE_ID_BITS) - 1);
+    private static final int MAX_SEQUENCE = (int)(Math.pow(2, SEQUENCE_BITS) - 1);
 
     private static final long CUSTOM_EPOCH = 1420070400000L;
 
@@ -23,8 +23,8 @@ public class SequenceGenerator {
     private long sequence = 0L;
 
     public SequenceGenerator(int machineId) {
-        if(machineId < 0 || machineId > maxMachineId) {
-            throw new IllegalArgumentException(String.format("MachineId must be between %d and %d", 0, maxMachineId));
+        if(machineId < 0 || machineId > MAX_MACHINE_ID) {
+            throw new IllegalArgumentException(String.format("MachineId must be between %d and %d", 0, MAX_MACHINE_ID));
         }
         this.machineId = machineId;
     }
@@ -43,7 +43,7 @@ public class SequenceGenerator {
             }
 
             if (currentTimestamp == lastTimestamp) {
-                sequence = (sequence + 1) & maxSequence;
+                sequence = (sequence + 1) & MAX_SEQUENCE;
                 if(sequence == 0) {
                     currentTimestamp = waitNextMillis(currentTimestamp);
                 }
@@ -72,7 +72,7 @@ public class SequenceGenerator {
     }
 
     private int createMachineId() {
-        int machineId;
+        int newMachineId;
         try {
             StringBuilder sb = new StringBuilder();
             Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();
@@ -85,11 +85,11 @@ public class SequenceGenerator {
                     }
                 }
             }
-            machineId = sb.toString().hashCode();
+            newMachineId = sb.toString().hashCode();
         } catch (Exception ex) {
-            machineId = (new SecureRandom().nextInt());
+            newMachineId = (new SecureRandom().nextInt());
         }
-        machineId = machineId & maxMachineId;
-        return machineId;
+        newMachineId = newMachineId & MAX_MACHINE_ID;
+        return newMachineId;
     }
 }
