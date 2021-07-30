@@ -1,0 +1,28 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 846288733065-in8alkha9jnniitp500255ho4i8cqntg.apps.googleusercontent.com
+            clientSecret: ZY4RT9VmRn7v_xqwwimQECQ7
+            #redirectUri: "http://localhost:8080/oauth2/callback/{registrationId}"
+            redirectUri: "https://api.cs.mrg.com.pe/api-sec01-group02/oauth2/callback/{registrationId}"
+            scope:
+              - email
+              - profile
+
+app:
+  auth:
+    tokenSecret: 926D96C90030DD58429D2751AC1BDBBC
+    tokenExpirationMsec: 864000000
+  oauth2:
+    # After successfully authenticating with the OAuth2 Provider,
+    # we'll be generating an auth token for the user and sending the token to the
+    # redirectUri mentioned by the frontend client in the /oauth2/authorize request.
+    # We're not using cookies because they won't work well in mobile clients.
+    authorizedRedirectUris:
+      #- http://localhost:3000/oauth2/redirect
+      - https://project-frontend-javastapls.vercel.app/oauth2/redirect
+      #- https://project-frontend-javastapls-euies98pv-javastapls2.vercel.app/oauth2/redirect
+      #- https://cs.mrg.com.pe/app-sec01-group02/oauth2/redirect
