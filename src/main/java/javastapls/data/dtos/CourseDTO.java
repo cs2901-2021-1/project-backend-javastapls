@@ -5,6 +5,7 @@ public class CourseDTO {
     private String dtoName;
     private String dtoProjectionPeriod;
     private int dtoProjection;
+    private double dtoPrecision;
     private String dtoAcademicDirectorateName;
 
     public CourseDTO(){
@@ -12,11 +13,12 @@ public class CourseDTO {
     }
 
     public CourseDTO(String dtoCode, String dtoName, String dtoProjectionPeriod, 
-                        int dtoProjection, String dtoAcademicDirectorateName){
+                        int dtoProjection,double dtoPrecision ,String dtoAcademicDirectorateName){
         this.dtoCode = dtoCode;
         this.dtoName = dtoName;
         this.dtoProjectionPeriod = dtoProjectionPeriod;
         this.dtoProjection = dtoProjection;
+        this.dtoPrecision = dtoPrecision;
         this.dtoAcademicDirectorateName = dtoAcademicDirectorateName;
     }
 
@@ -50,6 +52,14 @@ public class CourseDTO {
 
     public void setDtoProjection(int dtoProjection) {
         this.dtoProjection = dtoProjection;
+    }
+
+    public double getDtoPrecision() {
+        return this.dtoPrecision;
+    }
+
+    public void setDtoPrecision(double dtoPrecision) {
+        this.dtoPrecision = dtoPrecision;
     }
 
     public String getDtoAcademicDirectorateName() {

@@ -22,7 +22,7 @@ public class CourseService {
         List<CourseDTO> coursesDTO = new ArrayList<>();
         for(Course course : courses){
             CourseDTO courseDTO = new CourseDTO(course.getCode(), course.getName(), 
-                course.getProjectionPeriod(), course.getProjection(), course.getAcademicDirectorate().getName());
+                course.getProjectionPeriod(), course.getProjection(),course.getPrecision(), course.getAcademicDirectorate().getName());
             coursesDTO.add(courseDTO);
         }
         return coursesDTO;

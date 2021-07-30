@@ -25,6 +25,9 @@ public class Course implements Serializable {
     @Column(name="projection")
     private int projection;
 
+    @Column(name="precision")
+    private double precision;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_academic_directorate", referencedColumnName = "id")
     @JsonBackReference
@@ -34,11 +37,12 @@ public class Course implements Serializable {
         //DEFAULT CONSTRUCTOR
     }
 
-    public Course(String code, String projectionPeriod, String name, int projection, AcademicDirectorate academicDirectorate){
+    public Course(String code, String projectionPeriod, String name, int projection,double precision, AcademicDirectorate academicDirectorate){
         this.code = code;
         this.projectionPeriod = projectionPeriod;
         this.name = name;
         this.projection = projection;
+        this.precision = precision;
         this.academicDirectorate = academicDirectorate;
     }
 
@@ -74,6 +78,14 @@ public class Course implements Serializable {
         this.projection = projection;
     }
     
+    public double getPrecision() {
+        return precision;
+    }
+
+    public void setProjection(double precision) {
+        this.precision = precision;
+    }
+
     public AcademicDirectorate getAcademicDirectorate() {
         return this.academicDirectorate;
     }
