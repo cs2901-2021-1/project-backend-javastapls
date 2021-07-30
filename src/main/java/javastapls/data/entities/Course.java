@@ -82,7 +82,7 @@ public class Course implements Serializable {
         return precision;
     }
 
-    public void setProjection(double precision) {
+    public void setPrecision(double precision) {
         this.precision = precision;
     }
 

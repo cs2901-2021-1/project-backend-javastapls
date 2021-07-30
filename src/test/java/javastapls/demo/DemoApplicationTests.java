@@ -70,12 +70,14 @@ public class DemoApplicationTests extends AbstractTestNGSpringContextTests{
     void checkEntityCourse() throws Exception{
         AcademicDirectorate academicDirectorate = new AcademicDirectorate("DC","Departamento de Ciencias");
         Course course1 = new Course();
-        Course course2 = new Course("EG0005","2021-2","Matematicas 2",278,academicDirectorate);
+        Course course2 = new Course("EG0005","2021-2","Matematicas 2",278,0,academicDirectorate);
         course1.setAcademicDirectorate(academicDirectorate);
         course1.setCode("EG0005");
         course1.setName("Matematicas 2");
         course1.setProjection(278);
         course1.setProjectionPeriod("2021-2");
+        course1.setPrecision(0);
+        
         Assert.assertEquals(course1.getAcademicDirectorate(), course2.getAcademicDirectorate());
         Assert.assertEquals(course1.getCode(), course2.getCode());
         Assert.assertEquals(course1.getName(), course2.getName());
@@ -87,7 +89,7 @@ public class DemoApplicationTests extends AbstractTestNGSpringContextTests{
     void checkEntityCourseDTO() throws Exception{
         AcademicDirectorate academicDirectorate = new AcademicDirectorate("DC","Departamento de Ciencias");
         CourseDTO courseDto1 = new CourseDTO();
-        CourseDTO courseDto2 = new CourseDTO("EG0005","Matematicas 2","2021-2",278,academicDirectorate.getName());
+        CourseDTO courseDto2 = new CourseDTO("EG0005","Matematicas 2","2021-2",278,0,academicDirectorate.getName());
         courseDto1.setDtoAcademicDirectorateName(academicDirectorate.getName());
         courseDto1.setDtoCode("EG0005");
         courseDto1.setDtoName("Matematicas 2");
