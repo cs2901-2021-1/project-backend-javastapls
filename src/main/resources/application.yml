@@ -22,10 +22,6 @@ app:
     # redirectUri mentioned by the frontend client in the /oauth2/authorize request.
     # We're not using cookies because they won't work well in mobile clients.
     authorizedRedirectUris:
-<<<<<<< HEAD
       - http://localhost:3000/oauth2/redirect
       #- https://project-frontend-javastapls-euies98pv-javastapls2.vercel.app/oauth2/redirect
-=======
-      - https://project-frontend-javastapls.vercel.app/oauth2/redirect
->>>>>>> be62d815477222fca7820e0758686006177d884b
       #- https://cs.mrg.com.pe/app-sec01-group02/oauth2/redirect
